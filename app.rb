@@ -8,8 +8,18 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
 
-    get '/' do
-        
-        return 'Hello!'
+    get '/hello' do
+        name = params[:name]
+        return "Hello #{name}"
+    end
+
+    post '/submit' do
+        name = params[:name]
+        message = params[:message]
+        return "Thanks #{name}, you sent this message: #{message}"
+    end
+
+    get '/names' do
+        return 'Julia, Mary, Karim'
     end
 end
