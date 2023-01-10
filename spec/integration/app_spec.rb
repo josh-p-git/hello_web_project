@@ -10,7 +10,7 @@ describe Application do
   # class so our tests work.
   let(:app) { Application.new }
 
-  context "GET to /names" do
+  context "GET AND POST tests" do
     it "returns 200 OK with the right content" do
 
       response = get("/names")
@@ -20,5 +20,13 @@ describe Application do
       expect(response.body).to eq("Julia, Mary, Karim")
     end
   
+    it "returns 200 OK with the right content in alphabetical order" do
+
+        response = post("/sort-names", name: "Joe,Alice,Zoe,Julia,Kieran")
+  
+        # Assert the response status code and body.
+        expect(response.status).to eq(200)
+        expect(response.body).to eq("Alice,Joe,Julia,Kieran,Zoe")
+    end
   end
 end
